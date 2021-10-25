@@ -1,0 +1,7 @@
+server:
+  port: 80
+
+# 自定义日志文件配置属性
+log:
+  # 日志存储路径
+  logName: E:/project/java/springCloud/cloud2020/log/cloud-consumer-order80
