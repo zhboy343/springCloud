@@ -1,6 +1,11 @@
 server:
   port: 80
 
+spring:
+  application:
+    # 此服务名称也在Eureka中使用
+    name: cloud-order-service
+
 # 通过logging.config属性指定logback配置文件 ---> 保证先加载application再读取logback配置文件，解决读取logback时缺少日志存放地址属性
 logging:
   config: classpath:logback-custom.xml
@@ -9,3 +14,14 @@ logging:
 log:
   # 日志存储路径
   logName: E:/project/java/springCloud/cloud2020/log/cloud-consumer-order80
+
+# Eureka_client配置
+eureka:
+  client:
+    # 表示向注册中心注册自己
+    register-with-eureka: true
+    # 表示会去抓取服务自己的注册信息,默认为true。单节点无所谓，集群必须设置为true才能配合ribbon使用负载均衡
+    fetch-registry: true
+    service-url:
+      # 此处对应 cloud-eureka-server7001 项目 application.yml 中配置的 defaultZone
+      defaultZone: http://localhost:7001/eureka
