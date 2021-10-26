@@ -12,6 +12,7 @@
     <artifactId>cloud-eureka-server7001</artifactId>
 
     <dependencies>
+        <!-- 引入Eureka_server包 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
