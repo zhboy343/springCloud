@@ -16,6 +16,11 @@ public class PaymentController {
     @Autowired
     PaymentService paymentService;
 
+    @PostMapping(value = "/payment/test")
+    public void test(@RequestParam(value = "test") String test){
+        System.out.println(test);
+    }
+
     @PostMapping(value = "/payment/create")
     public CommonResult create(@RequestBody Payment payment){
         int result = paymentService.create(payment);

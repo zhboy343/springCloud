@@ -13,6 +13,7 @@
 
 
     <dependencies>
+        <!--  spring-boot-starter-web 和 spring-boot-starter-actuator 一般绑定一块都是必须的  -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
