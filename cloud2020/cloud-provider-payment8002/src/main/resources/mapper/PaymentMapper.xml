@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atguigu.springcloud.dao.PaymentDao">
+
+    <!-- 订单实体类映射 -->
+    <resultMap id="BaseResultMap" type="com.atguigu.springcloud.entities.Payment">
+        <id column="id" property="id" jdbcType="BIGINT"></id>
+        <id column="serial" property="serial" jdbcType="VARCHAR"></id>
+    </resultMap>
+
+    <!-- 创建订单 parameterType=Payment 因为在配置文件中配置了 type-aliases-package: com.atguigu.springcloud.entities   -->
+    <insert id="create" parameterType="Payment">
+        insert into payment(serial) values(#{serial});
+    </insert>
+
+    <!--  根据id查询订单  -->
+    <select id="getPaymentById"  parameterType="Long" resultMap="BaseResultMap">
+        select * from payment where id=#{id}
+    </select>
+</mapper>
+
