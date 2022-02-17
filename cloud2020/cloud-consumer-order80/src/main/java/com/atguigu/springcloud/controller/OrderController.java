@@ -14,7 +14,10 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class OrderController {
 
-    public static final String PAYMENT_URL = "http://localhost:8001";
+//    public static final String PAYMENT_URL = "http://localhost:8001";
+    // 集群时修改为eureka上对应的服务名称 对应调用服务在eureka页面上的名称(对应调用服务在配置文件中spring.application.name 大小写都行)
+    // 同时需要在 RestTemplate 入驻时添加注解@LoadBalanced
+    public static final String PAYMENT_URL = "http://cloud-payment-service";
 
     private static final Logger log = LoggerFactory.getLogger(OrderController.class);
 
