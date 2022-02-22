@@ -1,0 +1,19 @@
+server:
+  port: 80
+
+spring:
+  application:
+    # 此服务名称也在Eureka中使用
+    name: cloud-orderZk-service
+  cloud:
+    zookeeper:
+      connect-string: linux201:2181,linux202:2181,linux203:2181
+
+# 通过logging.config属性指定logback配置文件 ---> 保证先加载application再读取logback配置文件，解决读取logback时缺少日志存放地址属性
+logging:
+  config: classpath:logback-custom.xml
+
+# 自定义日志文件配置属性
+log:
+  # 日志存储路径
+  logName: E:/project/java/springCloud/cloud2020/log/cloud-consumer-order80

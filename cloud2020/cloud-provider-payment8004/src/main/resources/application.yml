@@ -1,0 +1,31 @@
+server:
+  port: 8004
+
+spring:
+  application:
+    name: cloud-payment-service4
+  datasource:
+    # 当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动包
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/a1local?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+  cloud:
+    zookeeper:
+      connect-string: linux201:2181,linux202:2181,linux203:2181
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  # 所有Entity别名类所在的包
+  type-aliases-package: com.atguigu.springcloud.entities
+
+# 通过logging.config属性指定logback配置文件 ---> 保证先加载application再读取logback配置文件，解决读取logback时缺少日志存放地址属性
+logging:
+  config: classpath:logback-custom.xml
+
+# 自定义日志文件配置属性
+log:
+  # 日志存储路径
+  logName: E:/project/java/springCloud/cloud2020/log/cloud_provider_payment8004
