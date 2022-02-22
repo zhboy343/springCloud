@@ -2,18 +2,22 @@ package com.atguigu.myRule;
 
 import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.RandomRule;
-import com.netflix.loadbalancer.RoundRobinRule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-// 官网信息 -- 自定义配置类不能放在 @ComponentScan 标签生扫描的包及其子包下
+
+
+// 官网信息 --
+// 这个自定义配置类不能放在@ComponentScan所扫描的当前包下以及子包下，
+// 否则我们自定义的这个配置类就会被所有的Ribbon客户端所共享，也就是说
+// 我们达不到特殊化定制的目的了
 @Configuration
 public class MyselfRule {
 
     @Bean
     public IRule myRule(){
         /*
-        RoundRobinRule 轮询
+        RoundRobinRule 轮询 - 默认算法，
         RandomRule 随机
         RetryRule  先按照RoundRobinRule的策略获取服务，如果获取服务失败则在指定时间内会进行重试
         WeightedResponseTimeRule 对RoundRobinRule的扩展，响应速度越快的实例选择权重越大，越容易被选择
