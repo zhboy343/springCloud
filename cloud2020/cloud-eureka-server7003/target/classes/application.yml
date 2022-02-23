@@ -15,3 +15,12 @@ eureka:
     # 集群情况下，不再填写自己，填写其他eureka服务地址 多台情况使用,隔开
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+
+# 通过logging.config属性指定logback配置文件 ---> 保证先加载application再读取logback配置文件，解决读取logback时缺少日志存放地址属性
+logging:
+  config: classpath:logback-custom.xml
+
+# 自定义日志文件配置属性
+log:
+  # 日志存储路径
+  logName: E:/project/java/springCloud/cloud2020/log/cloud_eureka_7003
