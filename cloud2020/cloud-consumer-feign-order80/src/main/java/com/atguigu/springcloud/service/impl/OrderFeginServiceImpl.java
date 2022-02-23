@@ -22,4 +22,9 @@ public class OrderFeginServiceImpl implements OrderFeginService {
     public CommonResult<Payment> getPaymentById(Long id) {
         return serviceFeign.getPaymentByIdx(id);
     }
+
+    @Override
+    public void timeout() throws InterruptedException {
+        serviceFeign.timeout();
+    }
 }

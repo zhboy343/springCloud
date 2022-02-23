@@ -27,4 +27,7 @@ public interface ServiceFeign {
     // 查询订单
     @GetMapping(value = "/payment/get/{id}")
     CommonResult getPaymentByIdx(@PathVariable("id") Long id);
+
+    @PostMapping(value = "/payment/timeout")
+    public void timeout() throws InterruptedException;
 }

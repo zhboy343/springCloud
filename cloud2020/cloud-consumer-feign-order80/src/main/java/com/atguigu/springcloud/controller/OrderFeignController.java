@@ -4,10 +4,7 @@ import com.atguigu.springcloud.entities.CommonResult;
 import com.atguigu.springcloud.entities.Payment;
 import com.atguigu.springcloud.service.OrderFeginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class OrderFeignController {
@@ -25,5 +22,12 @@ public class OrderFeignController {
     @GetMapping("/consumer/payment/get/{id}")
     public CommonResult<Payment> getPayment(@PathVariable("id") Long id) {
         return orderFeginService.getPaymentById(id);
+    }
+
+    // feign超时设置测试
+    @GetMapping(value = "/consumer/payment/timeout")
+    public void timeOut() throws InterruptedException {
+        System.out.println("xxxxxxxxxx1");
+        orderFeginService.timeout();
     }
 }

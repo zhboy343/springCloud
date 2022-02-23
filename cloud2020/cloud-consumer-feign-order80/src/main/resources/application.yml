@@ -32,3 +32,14 @@ eureka:
     instance-id: orderFeign80
     # eureka页面上鼠标放入项目名称上有ip提示
     prefer-ip-address: true
+
+##设置feign客户端超时时间( openFeign默认支持ribbon)
+feign:
+  client:
+    config:
+      default:
+        #指的是建立连接所用的时间，适用于网络状况正常的情况下，两端连接所用的时间
+        ConnectTimeout: 5000
+        #指的是中立连接后从服务器读取到可用资源所用的时间
+        ReadTimeout: 5000
+
