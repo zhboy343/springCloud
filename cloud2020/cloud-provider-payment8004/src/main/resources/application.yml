@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: cloud-payment-service4
+    name: cloud-payment-zookeeper-service
   datasource:
     # 当前数据源操作类型
     type: com.alibaba.druid.pool.DruidDataSource
