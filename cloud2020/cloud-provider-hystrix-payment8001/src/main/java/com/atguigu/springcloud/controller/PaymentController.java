@@ -66,10 +66,17 @@ public class PaymentController {
         return paymentService.paymentInfoError(id);
     }
 
+    // 降级方案
     private String paymentInfoPlanB(int id) {
         return paymentService.paymentInfoPlanB(id);
     }
 
+    // 降级方案-熔断
+    private String paymentInfoRd(int id) {
+        return paymentService.paymentInfoPlanB(id);
+    }
+
+    // 默认降级方案
     private String paymentInfoPlanDefault() {
         return paymentService.paymentInfoPlanDefault();
     }

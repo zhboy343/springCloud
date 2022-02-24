@@ -7,5 +7,6 @@ public interface PaymentService {
     public String paymentInfoTimeOut(int id);
     public String paymentInfoError(int id);
     public String paymentInfoPlanB(int id);
+    public String paymentInfoRd(int id);
     public String paymentInfoPlanDefault();
 }
