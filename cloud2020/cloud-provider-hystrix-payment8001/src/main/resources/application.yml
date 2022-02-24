@@ -1,22 +1,31 @@
 server:
-  port: 80
+  port: 8001
 
 spring:
   application:
-    # 此服务名称也在Eureka中使用
-    name: cloud-order-feign-service
+    name: cloud-payment-hystrix-service
+  datasource:
+    # 当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动包
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/a1local?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  # 所有Entity别名类所在的包
+  type-aliases-package: com.atguigu.springcloud.entities
 
 # 通过logging.config属性指定logback配置文件 ---> 保证先加载application再读取logback配置文件，解决读取logback时缺少日志存放地址属性
 logging:
   config: classpath:logback-custom.xml
-  # feign日志以什么级别 监控哪个接口
-  level:
-    com.atguigu.springcloud.fegin.ServiceFeign: debug
 
 # 自定义日志文件配置属性
 log:
   # 日志存储路径
-  logName: E:/project/java/springCloud/cloud2020/log/cloud-consumer-feign-order80
+  logName: E:/project/java/springCloud/cloud2020/log/cloud_provider_hystrix_payment8001
 
 # Eureka_client配置
 eureka:
@@ -27,22 +36,13 @@ eureka:
     fetch-registry: true
     service-url:
       # 此处对应 cloud-eureka-server7001 项目 application.yml 中配置的 defaultZone
-      # defaultZone: http://localhost:7001/eureka
+       defaultZone: http://localhost:7001/eureka
       # 集群版需添加全部eureak地址
-      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+#      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
   instance:
     # 修改在eureka页面上显示的服务名称
-    instance-id: orderFeign80
+    instance-id: paymentHystrix8001
     # eureka页面上鼠标放入项目名称上有ip提示
     prefer-ip-address: true
 
-##设置feign客户端超时时间( openFeign默认支持ribbon)
-feign:
-  client:
-    config:
-      default:
-        #指的是建立连接所用的时间，适用于网络状况正常的情况下，两端连接所用的时间
-        ConnectTimeout: 5000
-        #指的是中立连接后从服务器读取到可用资源所用的时间
-        ReadTimeout: 5000
 

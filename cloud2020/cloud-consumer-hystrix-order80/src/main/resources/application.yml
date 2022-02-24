@@ -4,7 +4,7 @@ server:
 spring:
   application:
     # 此服务名称也在Eureka中使用
-    name: cloud-order-feign-service
+    name: cloud-order—hystrix-service
 
 # 通过logging.config属性指定logback配置文件 ---> 保证先加载application再读取logback配置文件，解决读取logback时缺少日志存放地址属性
 logging:
@@ -16,7 +16,7 @@ logging:
 # 自定义日志文件配置属性
 log:
   # 日志存储路径
-  logName: E:/project/java/springCloud/cloud2020/log/cloud-consumer-feign-order80
+  logName: E:/project/java/springCloud/cloud2020/log/cloud-consumer-hystrix-order80
 
 # Eureka_client配置
 eureka:
@@ -27,12 +27,12 @@ eureka:
     fetch-registry: true
     service-url:
       # 此处对应 cloud-eureka-server7001 项目 application.yml 中配置的 defaultZone
-      # defaultZone: http://localhost:7001/eureka
+       defaultZone: http://localhost:7001/eureka
       # 集群版需添加全部eureak地址
-      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+#      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
   instance:
     # 修改在eureka页面上显示的服务名称
-    instance-id: orderFeign80
+    instance-id: orderHystrix80
     # eureka页面上鼠标放入项目名称上有ip提示
     prefer-ip-address: true
 

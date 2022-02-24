@@ -10,3 +10,6 @@ cloud2020/cloud-provider-payment8002/target/
 cloud2020/cloud-provider-payment8004/target/
 cloud2020/cloud-consumerzk-order80/target/
 cloud2020/cloud-consumer-feign-order80/target/
+cloud2020/cloud-provider-hystrix-payment8001/cloud-provider-hystrix-payment8001.iml
+cloud2020/cloud-provider-hystrix-payment8001/target/
+cloud2020/cloud-consumer-hystrix-order80/target/
