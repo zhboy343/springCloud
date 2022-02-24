@@ -22,13 +22,13 @@ public class OrderController {
     }
 
     // 超时访问
-    @GetMapping(value = "/payment/hystrix/timeOut")
+    @GetMapping(value = "/consumer/hystrix/timeOut")
     public String paymentInfoTimeOut(@RequestParam("id") int id) {
         return feignService.paymentInfoTimeOut(id);
     }
 
     // 异常访问
-    @GetMapping(value = "/payment/hystrix/error")
+    @GetMapping(value = "/consumer/hystrix/error")
     public String paymentInfoError(@RequestParam("id") int id) {
         return feignService.paymentInfoError(id);
     }
