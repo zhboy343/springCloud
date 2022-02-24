@@ -1,6 +1,7 @@
 package com.atguigu.springcloud.controller;
 
 import com.atguigu.springcloud.service.PaymentService;
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.slf4j.Logger;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+// 配置默认降级方案 没有配置的使用默认的方案  配置了降级方案的使用配置的方案 使用默认降级的方法上也要添加@HystrixCommand注解
+@DefaultProperties(defaultFallback = "paymentInfoPlanDefault")
 public class PaymentController {
     private static final Logger log = LoggerFactory.getLogger(PaymentController.class);
 
@@ -26,7 +29,7 @@ public class PaymentController {
         return paymentService.paymentInfoOk(id);
     }
 
-    // 超时访问
+    // 设置超时时间、降级方案
     /*
        设置超时时间，让用户服务不在等待订单服务的响应 这样可以及时释放资源
        如下 设置等待时间为2s 超过时间不再等待
@@ -44,7 +47,15 @@ public class PaymentController {
         return paymentService.paymentInfoTimeOut(id);
     }
 
-    // 异常访问
+    // 测试默认降级方案
+    @HystrixCommand
+    @GetMapping(value = "/payment/hystrix/default")
+    public String paymentInfoDefault(@RequestParam("id") int id) {
+        int x = 1/0;
+        return "测试默认降级方案";
+    }
+
+    // 设置熔断
     @GetMapping(value = "/payment/hystrix/error")
     public String paymentInfoError(@RequestParam("id") int id) {
         return paymentService.paymentInfoError(id);
@@ -52,6 +63,10 @@ public class PaymentController {
 
     private String paymentInfoPlanB(int id) {
         return paymentService.paymentInfoPlanB(id);
+    }
+
+    private String paymentInfoPlanDefault() {
+        return paymentService.paymentInfoPlanDefault();
     }
 
 }

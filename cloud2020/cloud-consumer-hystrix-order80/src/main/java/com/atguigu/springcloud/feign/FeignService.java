@@ -11,9 +11,13 @@ public interface FeignService {
     @GetMapping(value = "/payment/hystrix/ok")
     public String paymentInfoOk(@RequestParam("id") int id);
 
-    // 超时访问
+    // 超时访问 -- 测试超时时间 配置降级方案
     @GetMapping(value = "/payment/hystrix/timeOut")
     public String paymentInfoTimeOut(@RequestParam("id") int id);
+
+    // 测试默认降级方案
+    @GetMapping(value = "/payment/hystrix/default")
+    public String paymentInfoDefault(@RequestParam("id") int id);
 
     // 异常访问
     @GetMapping(value = "/payment/hystrix/error")

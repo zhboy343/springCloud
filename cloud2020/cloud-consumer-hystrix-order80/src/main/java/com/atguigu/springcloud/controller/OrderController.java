@@ -21,10 +21,16 @@ public class OrderController {
         return feignService.paymentInfoOk(id);
     }
 
-    // 超时访问
+    // 超时访问 -- 测试超时时间 配置降级方案
     @GetMapping(value = "/consumer/hystrix/timeOut")
     public String paymentInfoTimeOut(@RequestParam("id") int id) {
         return feignService.paymentInfoTimeOut(id);
+    }
+
+    // 测试默认降级方案
+    @GetMapping(value = "/consumer/hystrix/default")
+    public String paymentInfoDefault(@RequestParam("id") int id) {
+        return feignService.paymentInfoDefault(id);
     }
 
     // 异常访问

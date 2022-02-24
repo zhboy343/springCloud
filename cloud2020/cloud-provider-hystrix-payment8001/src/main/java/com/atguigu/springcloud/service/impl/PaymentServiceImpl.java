@@ -40,4 +40,9 @@ public class PaymentServiceImpl implements PaymentService {
     public String paymentInfoPlanB(int id) {
         return "线程池：" + Thread.currentThread().getName() + "__paymentInfoPlanB,id: " + id;
     }
+
+    @Override
+    public String paymentInfoPlanDefault() {
+        return "线程池：" + Thread.currentThread().getName() + "__paymentInfoPlanDefault";
+    }
 }
