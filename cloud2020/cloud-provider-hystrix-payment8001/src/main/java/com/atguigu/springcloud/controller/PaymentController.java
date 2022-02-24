@@ -51,7 +51,12 @@ public class PaymentController {
     @HystrixCommand
     @GetMapping(value = "/payment/hystrix/default")
     public String paymentInfoDefault(@RequestParam("id") int id) {
-        int x = 1/0;
+        try {
+            int x = 1/0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
         return "测试默认降级方案";
     }
 
