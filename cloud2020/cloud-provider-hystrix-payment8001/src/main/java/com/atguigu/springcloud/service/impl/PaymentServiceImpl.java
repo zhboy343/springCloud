@@ -3,8 +3,12 @@ package com.atguigu.springcloud.service.impl;
 import com.atguigu.springcloud.dao.PaymentDao;
 import com.atguigu.springcloud.entities.Payment;
 import com.atguigu.springcloud.service.PaymentService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -19,11 +23,21 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public String paymentInfoTimeOut(int id) {
-        return "线程池：" + Thread.currentThread().getName() + "paymentInfoTimeOut,id: " + id;
+        try {
+            TimeUnit.SECONDS.sleep(6);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "线程池：" + Thread.currentThread().getName() + "__paymentInfoTimeOut,id: " + id;
     }
 
     @Override
     public String paymentInfoError(int id) {
-        return "线程池：" + Thread.currentThread().getName() + "paymentInfoError,id: " + id;
+        return "线程池：" + Thread.currentThread().getName() + "__paymentInfoError,id: " + id;
+    }
+
+    @Override
+    public String paymentInfoPlanB(int id) {
+        return "线程池：" + Thread.currentThread().getName() + "__paymentInfoPlanB,id: " + id;
     }
 }
