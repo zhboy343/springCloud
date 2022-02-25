@@ -4,7 +4,7 @@ server:
 spring:
   application:
     # 此服务名称也在Eureka中使用
-    name: cloud-order—hystrix-service
+    name: cloud-order—feign-hystrix-service
 
 # 通过logging.config属性指定logback配置文件 ---> 保证先加载application再读取logback配置文件，解决读取logback时缺少日志存放地址属性
 logging:
@@ -16,7 +16,7 @@ logging:
 # 自定义日志文件配置属性
 log:
   # 日志存储路径
-  logName: E:/project/java/springCloud/cloud2020/log/cloud-consumer-hystrix-order80
+  logName: E:/project/java/springCloud/cloud2020/log/cloud-consumer-feign-hystrix-order80
 
 # Eureka_client配置
 eureka:
@@ -32,7 +32,7 @@ eureka:
 #      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
   instance:
     # 修改在eureka页面上显示的服务名称
-    instance-id: orderHystrix80
+    instance-id: orderFeignHystrix80
     # eureka页面上鼠标放入项目名称上有ip提示
     prefer-ip-address: true
 
@@ -42,9 +42,11 @@ feign:
     config:
       default:
         #指的是建立连接所用的时间，适用于网络状况正常的情况下，两端连接所用的时间
-        ConnectTimeout: 10000
-        #指的是中立连接后从服务器读取到可用资源所用的时间
-        ReadTimeout: 10000
-  hystrix:
-    enabled: true #如果处理自身的容错就开启。开启方式与生产端不一样。
+        ConnectTimeout: 5000
+        #指的是建立连接后从服务器读取到可用资源所用的时间
+        ReadTimeout: 5000
+  #openFeign集成了hystrix 若要在客户端开启hystrix 进行下设置
+  #hystrix默认响应时间为1s 和 上ReadTimeout 一样需要进行设置 否则在服务端开启hystrix时 调用超时测试方法时会现实超时
+#  hystrix:
+#    enabled: true
 
