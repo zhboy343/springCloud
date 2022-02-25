@@ -44,12 +44,20 @@ public class PaymentController {
      */
     @HystrixCommand(
             commandProperties = {
+                    // HystrixCommandProperties （可以进去找配置）
                     // 设置响应时间，超过时间则抛出异常停止调用的服务
                     @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds",value = "3000")
             },
             // 一旦调用服务方法失败并抛出了错误信息后，会自动调用@HystrixCommand标注好的fallbackMethod调用类中的指定方法
             // 指定方法参数要与原方法参数相同
-            fallbackMethod = "paymentInfoPlanB"
+            fallbackMethod = "paymentInfoPlanB",
+            // 舱壁模式 -- 此请求使用定义的线程池(防止公用线程池占满后无法请求)
+            threadPoolKey = "TimeOutThread", // 设置线程池名称，当不存时创建，存在时直接使用
+            threadPoolProperties = {    // 设置线程池属性
+                    // HystrixThreadPoolProperties $ Setter （可以进去找配置）
+                    @HystrixProperty(name = "coreSize",value = "3"),    // 线程池大小
+                    @HystrixProperty(name = "maxQueueSize", value = "20")   // 线程占满时，运行排队的新的请求排队数量
+            }
     )
     @GetMapping(value = "/payment/hystrix/timeOut")
     public String paymentInfoTimeOut(@RequestParam("id") int id) {
