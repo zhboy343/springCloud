@@ -22,9 +22,9 @@
     <module>cloud-consumerzk-order80</module>
       <module>cloud-consumer-feign-order80</module>
       <module>cloud-provider-hystrix-payment8001</module>
-      <module>cloud-consumer-hystrix-order80</module>
       <module>cloud-consumer-feign-hystrix-order80</module>
-    <module>cloud-consumer-hystrix-dashboard9001</module>
+    <module>cloud-consumer-hystrix-dashboard9002</module>
+      <module>cloud-consumer-hystrix-turbin9003</module>
   </modules>
 
 
