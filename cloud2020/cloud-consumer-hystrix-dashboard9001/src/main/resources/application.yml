@@ -1,0 +1,25 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    # 此服务名称也在Eureka中使用
+    name: cloud-hystrix-dsahboard-service
+
+# 通过logging.config属性指定logback配置文件 ---> 保证先加载application再读取logback配置文件，解决读取logback时缺少日志存放地址属性
+logging:
+  config: classpath:logback-custom.xml
+  # feign日志以什么级别 监控哪个接口
+  level:
+    com.atguigu.springcloud.fegin.ServiceFeign: debug
+
+# 自定义日志文件配置属性
+log:
+  # 日志存储路径
+  logName: E:/project/java/springCloud/cloud2020/log/hystrix-dsahboard9002
+
+#配置允许查看的host
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: localhost
+
