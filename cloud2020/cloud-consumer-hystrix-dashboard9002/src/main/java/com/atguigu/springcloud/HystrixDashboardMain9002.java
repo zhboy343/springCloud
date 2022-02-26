@@ -13,9 +13,9 @@ Cluster via Turbine (default cluster): https://turbine-hostname:port/turbine.str
 Cluster via Turbine (custom cluster): https://turbine-hostname:port/turbine.stream?cluster=[clusterName]
 Single Hystrix App: https://hystrix-app:port/actuator/hystrix.stream
  */
-public class HystrixDashboardMain9001 {
+public class HystrixDashboardMain9002 {
     public static void main(String[] args) {
-        SpringApplication.run(HystrixDashboardMain9001.class,args);
+        SpringApplication.run(HystrixDashboardMain9002.class,args);
     }
 }
 
