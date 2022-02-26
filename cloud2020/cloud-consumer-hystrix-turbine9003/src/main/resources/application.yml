@@ -39,4 +39,4 @@ eureka:
 turbine:
   app-config: cloud-payment-hystrix-service # 聚合多个集群可以,隔开
   clusterNameExpression: "'default'"
-  instanceUrlSuffix: /hystrix.stream  #没有的话会出现异常
+  instanceUrlSuffix: /hystrix.stream  #没有的话会出现异常 
